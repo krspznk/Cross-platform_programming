@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лабораторна робота №1
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      Виконала студентка групи КН-32 Позняк Христина
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Завдання №2</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="p_background">Знайдіть кількість парних чисел які при ділені на 3 дають в остачі 2 на заданому проміжку чисел [a,b]</p>
+      <ion-item>
+        <ion-label position="floating">Перше число(a)</ion-label>
+        <ion-input type="number" id="num1" value="1" #Inputnum1></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Друге число(b)</ion-label>
+        <ion-input type="number" id="num2" value="10" #Inputnum2></ion-input>
+      </ion-item>
+      
+      <ion-button expand="block" (click)="findnum(Inputnum1.value, Inputnum2.value)">Знайти</ion-button>
+      <ion-item>
+        <p>Відповідь: {{answer}} чисел</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Лабораторна робота №1</ion-title>
+  </ion-toolbar>
+</ion-footer>

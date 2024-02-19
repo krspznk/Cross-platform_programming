@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лабораторна робота №1
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      Виконала студентка групи КН-32 Позняк Христина
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Завдання №1</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="p_background">Задано три числа. Знайти кількість тих з них, які кратні 27.
+      </p>
+      <ion-item>
+        <ion-label position="floating">Перше число</ion-label>
+        <ion-input type="number" id="a" value="27" #Inputa></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Друге число</ion-label>
+        <ion-input type="number" id="b" value="2" #Inputb></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Третє число</ion-label>
+        <ion-input type="number" id="c" value="3" #Inputc></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="count(Inputa.value, Inputb.value, Inputc.value)">Розрахунок</ion-button>
+      <ion-item>
+        <p>Результат обчислення {{d}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Лабораторна робота №1</ion-title>
+  </ion-toolbar>
+</ion-footer>
