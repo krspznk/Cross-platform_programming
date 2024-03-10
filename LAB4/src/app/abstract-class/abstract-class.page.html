@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лабораторна робота №3
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button slot="start">
+      <ion-menu-button color="dark" menu="first"></ion-menu-button>
+    </ion-button>
+    <ion-title>
+      Виконала студентка групи КН-32 Позняк Христина
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-card-header>
+    Завдання по роботі з абстрактними класами:
+    <br />
+    Завдання 1. Скласти програму з абстрактним батьківським класом і двома
+    об'єктами – нащадками. Реалізувати циклічне виведення параметрів об'єктів,
+    використовуючи поліморфний контейнер - масив об'єктів базового класу
+    (кількість об'єктів> = 5)
+    <br />
+    Завдання 2. Організувати обчислення середньої вартості журналів і середньої
+    вартості газет.
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Введіть кількість печатної продукції</ion-label>
+      <ion-input type="number" [(ngModel)]="inputField"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="ras()">Знайти</ion-button>
+    <ion-label>Середня ціна журналів: {{meanMagazine}}</ion-label>
+    <br>
+    <ion-label>Середня ціна газет: {{meanNewspaper}}</ion-label>
+    <ion-item *ngFor="let item of printed">{{item.name + '- ' + item.getCost()}}</ion-item>
+  </ion-card-content>
+</ion-content>

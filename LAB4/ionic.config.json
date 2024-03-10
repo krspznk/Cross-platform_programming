@@ -1,0 +1,7 @@
+{
+  "name": "LAB4",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
