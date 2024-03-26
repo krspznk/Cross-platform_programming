@@ -1,0 +1,30 @@
+<app-my-header name="Лабораторна робота №6"></app-my-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-header>
+    Створіть підручник ввівши ці дані:
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Назва підручника: </ion-label>
+      <ion-input type="string" [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Автор підручника: </ion-label>
+      <ion-input type="string" [(ngModel)]="author"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Предмет: </ion-label>
+      <ion-input type="string" [(ngModel)]="subject"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Кількість сторінок: </ion-label>
+      <ion-input type="number" [(ngModel)]="pages"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="createTextbook()">Створити підручник</ion-button>
+  </ion-card-content>
+</ion-content>
