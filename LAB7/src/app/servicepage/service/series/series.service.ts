@@ -14,18 +14,13 @@ export class SeriesService {
     let term = x;
     let n = 1;
 
-    do {
-        try {
-            term = (Math.pow(-1, 1 + n) * Math.cos(n * term)) / (n * n);
-        } catch {
-            this.logService.write("This is me");
-        }
+    while (term > Number.EPSILON) {
+        term = (Math.pow(-1, 1 + n) * Math.cos(n * term)) / (n * n);
         sum += term;
         n++;
-        this.logService.write(sum.toFixed(4));
-    } while (term > -Math.PI && term < Math.PI);
-
-    this.logService.write("Hello: " + sum.toFixed(4));
+        sum
+    }
+    this.logService.write(`x=${x.toFixed(2)} y=${sum.toFixed(4)}`);
 
     return sum;
 }

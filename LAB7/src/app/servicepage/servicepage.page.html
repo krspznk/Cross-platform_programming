@@ -9,9 +9,21 @@
     <div class = "img_formula"></div>
   </ion-card-header>
   <ion-card-content>
- 
+    <ion-item>
+      <ion-label position="floating">Xn</ion-label>
+      <ion-input type="number" [(ngModel)]="xn"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Xk</ion-label>
+      <ion-input type="number" [(ngModel)]="xk"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">h</ion-label>
+      <ion-input type="number" [(ngModel)]="h"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="full" (click)="ras()">Розрахунок</ion-button>
+    </ion-item>
   </ion-card-content>
-  <ion-card-content>
-    
-  </ion-card-content>
+
 </ion-content>

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ServicepagePageRoutingModule } from './servicepage-routing.module';
 
 import { ServicepagePage } from './servicepage.page';
+import { MyHeaderModule } from 'src/my-header/my-header.component.module';
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
-    ServicepagePageRoutingModule
+    ServicepagePageRoutingModule,
+    MyHeaderModule
   ],
   declarations: [ServicepagePage]
 })
