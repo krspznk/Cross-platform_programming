@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лабораторна робота №1
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      Виконала студентка групи КН-32 Позняк Христина
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Завдання №3</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="p_background">Згенерувати матрицю розміром NxN. Виокремити за допомогою кольору усі непарні від’ємні елементи більші за -10.
+      </p>
+      <ion-item>
+        <ion-label position="floating">N</ion-label>
+        <ion-input type="number" id="n" value="5" #Inputn></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="creatematrix(Inputn.value)">Знайти</ion-button>
+      <ion-item>
+        <ion-grid>
+          <ion-row *ngFor="let i of matrix">
+            <ion-col *ngFor = "let j of i" [ngStyle]="{backgroundColor: getColor(j)}">
+              {{j}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Лабораторна робота №1</ion-title>
+  </ion-toolbar>
+</ion-footer>
