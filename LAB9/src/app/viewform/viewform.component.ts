@@ -27,10 +27,10 @@ export class ViewformComponent implements OnInit {
 
     this.myformForm = this.fb.group({
       name: [this.myform.name, Validators.required],
-      unit: [this.myform.unit, Validators.required],
+      unit: [this.myform.unit, Validators.required, this.validation.unitOfMeasurement],
       amount: [
         this.myform.amount,
-        [Validators.required, this.validation.positiveNumber],
+        [Validators.required, this.validation.amountNumber],
       ],
       price: [
         this.myform.price,

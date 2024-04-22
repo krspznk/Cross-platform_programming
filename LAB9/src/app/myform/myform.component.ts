@@ -27,10 +27,10 @@ export class MyformComponent  implements OnInit {
     ) {
       this.MyForm = fb.group({
         name: ['', [Validators.required]],
-        unit: ['', [Validators.required]],
+        unit: ['', [Validators.required, myFormValidationService.unitOfMeasurement]],
         amount: [
           '',
-          [Validators.required, myFormValidationService.positiveNumber],
+          [Validators.required, myFormValidationService.amountNumber],
         ],
         price: [
           '',

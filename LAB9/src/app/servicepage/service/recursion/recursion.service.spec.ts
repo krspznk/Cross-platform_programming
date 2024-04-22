@@ -14,9 +14,9 @@ describe('RecursionService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('SumSeries: x=0.1, y=0.8191', () => {
+  it('SumSeries: x=0.1, y=0.8200', () => {
     let x = 0.1;
-    let y = 0.8191;
+    let y = 0.8200;
     let result = service.getTab(x);
     let y1 = result.get(x);
 

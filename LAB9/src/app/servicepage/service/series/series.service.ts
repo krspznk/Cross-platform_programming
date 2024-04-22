@@ -9,20 +9,20 @@ export class SeriesService {
   private xy = new Map();
   constructor(private logService: LogService) {}
 
-  getSeries(x: number) {
-    let sum = 0;
-    let term = x;
-    let n = 1;
+  getSeries(x: number): number {
+    let sum: number = 0;
+    let term: number = x;
+    let n: number = 1;
 
-    while (term > Number.EPSILON) {
-        term = (Math.pow(-1, 1 + n) * Math.cos(n * term)) / (n * n);
+    while (Math.abs(term) > Number.EPSILON) {
+        term = (Math.pow(-1, 1 + n) * Math.cos(n * x)) / (n * n);
         sum += term;
         n++;
-        sum
     }
-    this.logService.write(`x=${x.toFixed(2)} y=${sum.toFixed(4)}`);
-
-    return sum;
+    const result: number = parseFloat(sum.toFixed(4)); // Округлюємо результат до 4 знаків після коми
+    this.logService.write(`x=${x.toFixed(2)} y=${result}`);
+    
+    return result;
 }
 
 
@@ -31,7 +31,7 @@ export class SeriesService {
     let x = xn,
       y = 0.0;
 
-    while (x <= xk) {
+    do {
       y = this.getSeries(x);
       this.xy.set(x, y);
       if (this.logService) {
@@ -39,6 +39,7 @@ export class SeriesService {
         x += h;
       }
     }
+    while (x <= xk)
     return this.xy;
   }
 }

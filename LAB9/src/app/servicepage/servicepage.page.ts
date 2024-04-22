@@ -36,7 +36,7 @@ export class ServicepagePage implements OnInit {
     console.log('Табулювання');
     this.xyTab = this.tabService.getTab(this.xn, this.xk, this.h);
     console.log('Ряд');
-    this.xySeries = this.tabService.getTab(this.xn, this.xk, this.h);
+    this.xySeries = this.seriesService.getTab(this.xn, this.xk, this.h);
     console.log('Рекурсія');
     this.xyRecursion = this.recurseService.getTab(this.xn, this.xk, this.h);
 
@@ -58,58 +58,56 @@ export class ServicepagePage implements OnInit {
       });
     }
 
-  lineChartMethod() {
-    if (this.lineChart instanceof Chart) {
-      this.lineChart.destroy();
+    lineChartMethod() {
+      if (this.lineChart instanceof Chart) {
+        this.lineChart.destroy();
+      }
+  
+      const xx = Array.from(this.xyRecursion.keys());
+      const yy_tab = Array.from(this.xyTab.values());
+      const yy_ser = Array.from(this.xySeries.values());
+      const yy_rec = Array.from(this.xyRecursion.values());
+  
+      this.lineChart = new Chart(this.lineCanvas?.nativeElement, {
+        type: 'line',
+        data: {
+          labels: xx,
+          datasets: [
+            {
+              label: 'Табульована функція',
+              fill: false,
+              borderColor: 'rgba(54, 431, 192, 1)',
+              borderDashOffset: 0.0,
+              pointRadius: 5,
+              pointHoverRadius: 9,
+              pointStyle: 'circle',
+              data: yy_tab,
+              spanGaps: false,
+            },
+            {
+              label: 'Ряд',
+              fill: false,
+              borderColor: 'rgba(133, 54, 192, 1)',
+              borderDashOffset: 0.0,
+              pointRadius: 5,
+              pointHoverRadius: 9,
+              pointStyle: 'circle',
+              data: yy_ser,
+              spanGaps: false,
+            },
+            {
+              label: 'Рекурсія',
+              fill: false,
+              borderColor: 'rgba(76, 121, 192, 1)',
+              borderDashOffset: 0.0,
+              pointRadius: 5,
+              pointHoverRadius: 9,
+              pointStyle: 'circle',
+              data: yy_rec,
+              spanGaps: false,
+            },
+          ],
+        },
+      });
     }
-
-    const xx_rec = Array.from(this.xyRecursion.keys());
-    const yy_rec = Array.from(this.xyRecursion.values());
-
-    const yy_tab = Array.from(this.xyRecursion.values());
-
-    const yy_ser = Array.from(this.xyRecursion.values());
-
-    this.lineChart = new Chart(this.lineCanvas?.nativeElement, {
-      type: 'line',
-      data: {
-        labels: xx_rec,
-        datasets: [
-          {
-            label: 'Графік функції',
-            fill: false,
-            borderColor: 'rgba(54, 431, 192, 1)',
-            borderDashOffset: 0.0,
-            pointRadius: 5,
-            pointHoverRadius: 9,
-            pointStyle: 'circle',
-            data: yy_rec,
-            spanGaps: false,
-          },
-          {
-            label: 'Графік функції',
-            fill: false,
-            borderColor: 'rgba(133, 54, 192, 1)',
-            borderDashOffset: 0.0,
-            pointRadius: 5,
-            pointHoverRadius: 9,
-            pointStyle: 'circle',
-            data: yy_tab,
-            spanGaps: false,
-          },
-          {
-            label: 'Графік функції',
-            fill: false,
-            borderColor: 'rgba(76, 121, 192, 1)',
-            borderDashOffset: 0.0,
-            pointRadius: 5,
-            pointHoverRadius: 9,
-            pointStyle: 'circle',
-            data: yy_ser,
-            spanGaps: false,
-          },
-        ],
-      },
-    });
-  }
 }
