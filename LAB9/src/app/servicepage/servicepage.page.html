@@ -25,5 +25,17 @@
       <ion-button expand="full" (click)="ras()">Розрахунок</ion-button>
     </ion-item>
   </ion-card-content>
+  <ion-card-content>
+    <ion-card-title> Результати розрахунку </ion-card-title>
+    <ion-list>
+      <ion-item *ngFor="let item of xyInput | keyvalue">
+        <ion-label>
+          <h5>{{item.key}}</h5>
 
+          <h5>{{item.value}}</h5>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <canvas #lineCanvas></canvas>
+  </ion-card-content>
 </ion-content>

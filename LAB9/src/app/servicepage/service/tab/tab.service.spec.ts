@@ -13,9 +13,9 @@ describe('TabService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-  it("Tabulation in points: x=0.1, y=0.819133", ()=>{
+  it("Tabulation in points: x=0.1, y=0.8191", ()=>{
     let x = 0.1;
-    let y = 0.819133;
+    let y = 0.8191;
     let xy = service.getTab();
     let y1: number | undefined = 5;
     y1 = xy.get(x);
