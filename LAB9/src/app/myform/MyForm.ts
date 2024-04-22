@@ -3,7 +3,7 @@ export class MyForm {
     unit: string = '';
     amount: number = 0;
     price: number = 0;
-    producers: any[] = [];
+    producers: string[] = [];
   
     constructor(
       name: string,

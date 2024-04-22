@@ -7,23 +7,13 @@ import { MyForm } from 'src/app/myform/MyForm';
   styleUrls: ['./goods.page.scss'],
 })
 export class GoodsPage implements OnInit {
-  isEditing: boolean = false;
-  myform!: [];
   myforms: MyForm[] = [];
 
   constructor() {}
 
   onMyFormAdded(newForm: MyForm) {
+    console.log('onMyFormAdded');
     this.myforms.push(newForm);
   }
-
-  onMyFormUpdated(updatedMyForm: MyForm) {
-  }
-
-  onBackToForm() {
-    this.isEditing = false;
-  }
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,24 +1,12 @@
 <app-my-header name="Лабораторна робота №9"></app-my-header>
 
 <ion-content [fullscreen]="true">
-  <ng-container *ngIf="!isEditing; else editMode">
-    <app-myform
-    (myformAddedEvent)="onMyFormAdded($event)"
-        ></app-myform>
+  <ng-container>
+    <app-myform (formAddedEvent)="onMyFormAdded($event)"></app-myform>
   </ng-container>
 
-  <ion-item *ngForm = "let forma of myforms; let i = index">
+  <ion-item *ngFor="let forma of myforms; let i = index">
     <app-viewform
-      [myform]="forma"
-      (myformUpdatedEvent)="onMyFormUpdated($event)"
-    ></app-viewform>
+      [myform]="forma" style="width: 100%;"></app-viewform>
   </ion-item>
-
-  <ng-template #editMode>
-    <app-viewform
-      [myform]="myform"
-      (myformUpdatedEvent)="onMyFormUpdated($event)"
-    ></app-viewform>
-    <ion-button (click)="onBackToForm()">Повернутися до форми</ion-button>
-  </ng-template>
 </ion-content>

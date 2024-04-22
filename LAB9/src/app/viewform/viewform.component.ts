@@ -7,15 +7,14 @@ import { ValidationService } from './servise/validation.service';
   templateUrl: './viewform.component.html',
   styleUrls: ['./viewform.component.scss'],
 })
-export class ViewformComponent  implements OnInit {
-
+export class ViewformComponent implements OnInit {
   @Input() myform!: MyForm;
-  @Output() myformUpdatedEvent: EventEmitter<MyForm> =
-    new EventEmitter<MyForm>();
   myformForm!: FormGroup;
   validation!: ValidationService;
 
   constructor(private fb: FormBuilder, private validator: ValidationService) {
+    console.log("constructor");
+    
     this.validation = validator;
   }
 
@@ -24,6 +23,8 @@ export class ViewformComponent  implements OnInit {
   }
 
   initForm() {
+    console.log('initForm');
+
     this.myformForm = this.fb.group({
       name: [this.myform.name, Validators.required],
       unit: [this.myform.unit, Validators.required],
@@ -45,7 +46,7 @@ export class ViewformComponent  implements OnInit {
       this.myform.producers.forEach((producer: any) => {
         producersArray.push(
           this.fb.group({
-            name: [producer, Validators.required],
+            name: [producer.name, Validators.required],
           })
         );
       });
@@ -79,8 +80,6 @@ export class ViewformComponent  implements OnInit {
           (producer: { name: any }) => producer.name
         )
       );
-      this.myformUpdatedEvent.emit(updatedMyForm);
     }
   }
-
 }

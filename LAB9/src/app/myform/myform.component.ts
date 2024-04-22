@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -18,6 +18,10 @@ import { ValidationService } from './servise/validation.service';
 export class MyformComponent  implements OnInit {
   MyForm!: FormGroup;
   form!: MyForm;
+
+  @Output() formAddedEvent: EventEmitter<MyForm> =
+    new EventEmitter<MyForm>();
+
   constructor( private fb: FormBuilder,
   myFormValidationService: ValidationService
     ) {
@@ -32,7 +36,7 @@ export class MyformComponent  implements OnInit {
           '',
           [Validators.required, myFormValidationService.positiveNumber],
         ],
-        producers: this.fb.array([new FormControl()]),
+        producers: this.fb.array([]),
       });
      }
      addProducer() {
@@ -67,6 +71,8 @@ export class MyformComponent  implements OnInit {
         );
     
         console.log(this.form); 
+
+        this.formAddedEvent.emit(this.form);
       }
     }
   
