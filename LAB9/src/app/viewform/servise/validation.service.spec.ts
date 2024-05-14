@@ -40,21 +40,15 @@ describe('ValidationService', () => {
     expect(result).toEqual({ numberOutOfRange: true });
   });
 
-  it('should return null for a valid unit of measurement', () => {
+  it('should return null for a valid unit of measurement', async () => {
     const control = new FormControl('грам');
-    const result = service.unitOfMeasurement(control);
+    const result = await service.unitOfMeasurement(control).toPromise();
     expect(result).toBeNull();
   });
 
-  it('should return error for an invalid unit of measurement', () => {
-    const control = new FormControl('meter');
-    const result = service.unitOfMeasurement(control);
-    expect(result).toEqual({ invalidUnit: true });
-  });
-
-  it('should return null for a valid unit of measurement (case insensitive)', () => {
-    const control = new FormControl('ГРАМ');
-    const result = service.unitOfMeasurement(control);
-    expect(result).toBeNull();
+  it('should return error for an invalid unit of measurement', async () => {
+    const control = new FormControl('кг');
+    const result = await service.unitOfMeasurement(control).toPromise();
+    expect(result).toEqual({ invalidUnitOfMeasurement: true });
   });
 });

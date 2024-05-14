@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray, AsyncValidatorFn } from '@angular/forms';
 import { MyForm } from '../myform/MyForm';
 import { ValidationService } from './servise/validation.service';
+
 @Component({
   selector: 'app-viewform',
   templateUrl: './viewform.component.html',
@@ -14,7 +15,6 @@ export class ViewformComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private validator: ValidationService) {
     console.log("constructor");
-    
     this.validation = validator;
   }
 
@@ -30,7 +30,7 @@ export class ViewformComponent implements OnInit {
       unit: [this.myform.unit, Validators.required, this.validation.unitOfMeasurement],
       amount: [
         this.myform.amount,
-        [Validators.required, this.validation.amountNumber],
+        [Validators.required, this.validation.amountNumber(0, 100)],
       ],
       price: [
         this.myform.price,
@@ -80,6 +80,7 @@ export class ViewformComponent implements OnInit {
           (producer: { name: any }) => producer.name
         )
       );
+      console.log(updatedMyForm);
     }
   }
 }
