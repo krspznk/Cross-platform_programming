@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, AsyncValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MyForm } from '../myform/MyForm';
 import { ValidationService } from './servise/validation.service';
 
@@ -11,33 +11,24 @@ import { ValidationService } from './servise/validation.service';
 export class ViewformComponent implements OnInit {
   @Input() myform!: MyForm;
   myformForm!: FormGroup;
-  validation!: ValidationService;
+  isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder, private validator: ValidationService) {
-    console.log("constructor");
-    this.validation = validator;
-  }
+  constructor(private fb: FormBuilder, private validator: ValidationService) {}
 
   ngOnInit() {
     this.initForm();
   }
 
   initForm() {
-    console.log('initForm');
-
     this.myformForm = this.fb.group({
       name: [this.myform.name, Validators.required],
-      unit: [this.myform.unit, Validators.required, this.validation.unitOfMeasurement],
-      amount: [
-        this.myform.amount,
-        [Validators.required, this.validation.amountNumber(0, 100)],
-      ],
-      price: [
-        this.myform.price,
-        [Validators.required, this.validation.positiveNumber],
-      ],
+      unit: [this.myform.unit, Validators.required],
+      amount: [this.myform.amount, [Validators.required, Validators.min(0), Validators.max(100)]],
+      price: [this.myform.price, [Validators.required, Validators.min(0)]],
       producers: this.fb.array(this.initProducers()),
     });
+
+    this.disableForm(); // Вимикаємо всі поля за замовчуванням
   }
 
   initProducers() {
@@ -69,6 +60,23 @@ export class ViewformComponent implements OnInit {
     (this.myformForm.get('producers') as FormArray).removeAt(index);
   }
 
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+    if (this.isEditMode) {
+      this.enableForm(); // Увімкнути всі поля для редагування
+    } else {
+      this.disableForm(); // Вимкнути всі поля
+    }
+  }
+
+  enableForm() {
+    this.myformForm.enable();
+  }
+
+  disableForm() {
+    this.myformForm.disable();
+  }
+
   onSubmit() {
     if (this.myformForm.valid) {
       const updatedMyForm = new MyForm(
@@ -76,11 +84,11 @@ export class ViewformComponent implements OnInit {
         this.myformForm.value.unit,
         this.myformForm.value.amount,
         this.myformForm.value.price,
-        this.myformForm.value.producers.map(
-          (producer: { name: any }) => producer.name
-        )
+        this.myformForm.value.producers.map((producer: any) => producer.name)
       );
       console.log(updatedMyForm);
+      // Ось де ви могли б зробити щось із `updatedMyForm`, наприклад, відправити його на сервер або зберегти локально.
+      this.toggleEditMode();
     }
   }
 }

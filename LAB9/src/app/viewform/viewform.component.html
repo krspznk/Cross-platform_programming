@@ -10,6 +10,7 @@
           id="name"
           type="text"
           formControlName="name"
+          [disabled]="!isEditMode"
         ></ion-input>
       </ion-item>
       <ion-item>
@@ -18,6 +19,7 @@
           id="unit"
           type="text"
           formControlName="unit"
+          [disabled]="!isEditMode"
         ></ion-input>
       </ion-item>
       <ion-item>
@@ -26,6 +28,7 @@
           id="amount"
           type="number"
           formControlName="amount"
+          [disabled]="!isEditMode"
         ></ion-input>
       </ion-item>
       <ion-item>
@@ -34,10 +37,22 @@
           id="price"
           type="number"
           formControlName="price"
+          [disabled]="!isEditMode"
         ></ion-input>
       </ion-item>
 
-      <ion-card>
+      <ion-card *ngIf="!isEditMode">
+        <ion-card-header>
+          <ion-card-title>Виробники</ion-card-title>
+        </ion-card-header>
+        <ion-card-content formArrayName="producers">
+          <ion-item *ngFor="let producer of producersControls; let i = index" [formGroupName]="i">
+            <ion-input type="text" formControlName="name" placeholder="Назва виробника"></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card *ngIf="isEditMode">
         <ion-card-header>
           <ion-card-title>Виробники</ion-card-title>
         </ion-card-header>
@@ -46,15 +61,8 @@
             <ion-icon slot="start" name="add"></ion-icon>
             Додати виробника
           </ion-button>
-          <ion-item
-            *ngFor="let producer of producersControls; let i = index"
-            [formGroupName]="i"
-          >
-            <ion-input
-              type="text"
-              formControlName="name"
-              placeholder="Назва виробника"
-            ></ion-input>
+          <ion-item *ngFor="let producer of producersControls; let i = index" [formGroupName]="i">
+            <ion-input type="text" formControlName="name" placeholder="Назва виробника"></ion-input>
             <ion-button color="tertiary" (click)="deleteProducer(i)">
               <ion-icon slot="start" name="trash"></ion-icon>
               Видалити
@@ -63,16 +71,9 @@
         </ion-card-content>
       </ion-card>
     </ion-card-content>
-  </ion-card>
 
-  <ion-button
-    type="submit"
-    color="my-color"
-    expand="block"
-    fill="outline"
-    (click)="onSubmit()"
-    [disabled]="!myformForm.valid"
-  >
-    Зберегти зміни
-  </ion-button>
+    <ion-button *ngIf="!isEditMode" color="my-color" expand="block" fill="outline" (click)="toggleEditMode()">Редагувати</ion-button>
+      
+    <ion-button *ngIf="isEditMode" type="submit" color="my-color" expand="block" fill="outline" (click)="onSubmit()" [disabled]="!myformForm.valid">Зберегти зміни</ion-button>
+  </ion-card>
 </div>
