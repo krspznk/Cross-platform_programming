@@ -1,0 +1,12 @@
+<app-my-header name="Лабораторна робота №9"></app-my-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container>
+    <app-myform (formAddedEvent)="onMyFormAdded($event)"></app-myform>
+  </ng-container>
+
+  <ion-item *ngFor="let forma of myforms; let i = index">
+    <app-viewform
+      [myform]="forma" style="width: 100%;"></app-viewform>
+  </ion-item>
+</ion-content>

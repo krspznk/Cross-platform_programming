@@ -1,0 +1,41 @@
+<app-my-header name="Лабораторна робота №7"></app-my-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-header>
+    Завдання по роботі з сервісами:
+    <br />
+    Провести табулювання. обрахування за допомогою циклу та рекурсії наступну
+    функцію
+    <div class = "img_formula"></div>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating">Xn</ion-label>
+      <ion-input type="number" [(ngModel)]="xn"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Xk</ion-label>
+      <ion-input type="number" [(ngModel)]="xk"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">h</ion-label>
+      <ion-input type="number" [(ngModel)]="h"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="full" (click)="ras()">Розрахунок</ion-button>
+    </ion-item>
+  </ion-card-content>
+  <ion-card-content>
+    <ion-card-title> Результати розрахунку </ion-card-title>
+    <ion-list>
+      <ion-item *ngFor="let item of xyInput | keyvalue">
+        <ion-label>
+          <h5>{{item.key}}</h5>
+
+          <h5>{{item.value}}</h5>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <canvas #lineCanvas></canvas>
+  </ion-card-content>
+</ion-content>

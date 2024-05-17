@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Лабораторна робота №2
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button slot="start">
+      <ion-menu-button color="dark" menu="first"></ion-menu-button>
+    </ion-button>
+    <ion-title>
+      Виконала студентка групи КН-32 Позняк Христина
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Лабораторна робота №2</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text>
+        Створити додаток для табулювання і виведення на екран значення функції, також побудувати графік функції
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating">Xn</ion-label>
+        <ion-input type="number" id="xn" value="-1.9" #Inputxn></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Xk</ion-label>
+        <ion-input type="number" id="xk" value="29.7" #Inputxk></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">a</ion-label>
+        <ion-input type="number" id="a" value="0.8" #Inputa></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">h</ion-label>
+        <ion-input type="number" id="h" value="0.1" #Inputh></ion-input>
+      </ion-item>
+      <ion-button expand = "block" (click)="graphras(Inputxn.value, Inputxk.value, Inputa.value, Inputh.value)">Розрахунок</ion-button>
+    <ion-item>
+      <canvas #lineCanvas></canvas>
+      <ion-item *ngFor="let item of data1"> {{item}}</ion-item>
+    </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
