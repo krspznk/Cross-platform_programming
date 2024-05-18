@@ -28,10 +28,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/my-header/my-header.component.ts" // Add your component here if not already included
-  ]
+  }
 }

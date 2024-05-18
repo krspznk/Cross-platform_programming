@@ -11,11 +11,11 @@ export class ConfigService {
   currentSpec = DEFAULT_SPEC;
   spec$: BehaviorSubject<Spec> = new BehaviorSubject<Spec>(DEFAULT_SPEC);
   setSpec(spec: Spec) {
+    console.log("є зміни!!!");
     this.spec$.next(spec);
   }
 
   constructor() { }
 }
 
-var specList = new SpecList();
-const DEFAULT_SPEC = specList.spec.get(0);
+const DEFAULT_SPEC = {"id": 0, "name": "Комп'ютерні науки"};

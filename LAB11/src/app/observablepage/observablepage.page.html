@@ -9,8 +9,14 @@
             {{spec.name}}
         </ion-label>
     </ion-item>
-    <ion-item *ngFor="let student of studentList.searchStudentResult; let j = index">
-        <ion-item>{{student}}</ion-item>
+    <ion-item *ngFor="let student of studentList.searchStudent; let j = index">
+        <ion-item>{{student.first}}</ion-item>
+        <ion-item>{{student.last}}</ion-item>
+        <ion-item>{{student.sex}}</ion-item>
+        <ion-item>{{student.birthday}}</ion-item>
+        <ion-item>{{student.group}}</ion-item>
+        <ion-item>{{student.spec_id}}</ion-item>
+
     </ion-item>
     <ion-item>
         <ion-label position="stacked">Введіть нову спеціальність:</ion-label>
@@ -38,4 +44,3 @@
         </ion-card-content>
     </ion-card>
 </ion-content>
-src\app\observablepage\service
