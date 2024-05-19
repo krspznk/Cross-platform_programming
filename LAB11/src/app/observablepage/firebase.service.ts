@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Spec } from './service/Spec'; 
-import { SpecList } from './service/SpecList';
 import {
   AngularFireDatabase,
   AngularFireList,
@@ -23,7 +22,7 @@ export class FirebaseService {
       frist: student.first,
       last: student.last,
       sex: student.sex,
-      birthday:student.birthday,
+      years:student.years,
       group: student.group,
       spec_id: student.spec_id
     })
@@ -47,12 +46,12 @@ export class FirebaseService {
   getRecordList(bd: string, op: boolean) {
     if (op) {
       this.studentListRef = this.db.list('/' + bd);
-      console.log('Students: ' + this.studentListRef);
+      console.log('students: ' + this.studentListRef);
 
       return this.studentListRef;
     } else {
       this.specListRef = this.db.list('/' + bd);
-      console.log('Specialty: ' + this.specListRef);
+      console.log('spec: ' + this.specListRef);
       return this.specListRef;
     }
   }
@@ -63,7 +62,7 @@ export class FirebaseService {
       frist: student.first,
       last: student.last,
       sex: student.sex,
-      birthday:student.birthday,
+      birthday:student.years,
       group: student.group,
       spec_id: student.spec_id
     })

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lab11base": {
+      "hosting": {
+        "app": [
+          "lab11base"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lab11base"
+  }
+}

@@ -24,8 +24,8 @@ export class ObservablepagePage implements OnInit {
   spec: Spec = new Spec();
 
   count = 0
-  bdStudent = 'Student'
-  bdSpec = 'Spec'
+  bdStudent = 'students'
+  bdSpec = 'spec'
   constructor(private fbService: FirebaseService) { }
 
   ngOnInit() {
@@ -54,15 +54,28 @@ export class ObservablepagePage implements OnInit {
       .valueChanges()
       .subscribe((res) => {
         console.log("Res: " + res);
-        if (op) {
-          this.studentList.studentList = res;
+        if (res) {
+          console.log("Data available");
+          // Data is available
+          if (op) {
+            this.studentList.studentList = res;
+          } else {
+            this.specs.spec = res;
+            if (this.specs.spec && this.specs.spec.length > 0) {
+              this.spec = this.specs.spec[this.count];
+              this.studentList.search(this.spec.id);
+              console.log("Data available");
+            } else {
+              console.log("No spec available");
+            }
+          }
         } else {
-          this.specs.spec = res;
-          this.spec = this.specs.spec[this.count];
-          this.studentList.search(this.spec.id);
+          // Handle null data
+          console.log("No data available");
         }
       });
   }
+  
 
   nextSpec(){
     if (this.count < this.specs.spec.length - 1){
@@ -80,12 +93,12 @@ export class ObservablepagePage implements OnInit {
   }
 
 
-  addStudent(first: any, last: any, sex: any, birthday: any, group: any ){
+  addStudent(first: any, last: any, sex: any, years: any, group: any ){
     let student = new Student();
     student.first = first;
     student.last = last;
     student.sex = sex;
-    student.birthday = new Date(birthday); 
+    student.years = years; 
     student.group = group;
     student.spec_id = this.spec.id;
 

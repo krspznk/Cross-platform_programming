@@ -5,19 +5,35 @@
         <ion-label>
             Поточна спеціальність:
         </ion-label>
-        <ion-label>
-            {{spec.name}}
-        </ion-label>
+        <ion-label *ngIf="spec">{{spec.name}}</ion-label>
     </ion-item>
+    
     <ion-item *ngFor="let student of studentList.searchStudent; let j = index">
-        <ion-item>{{student.first}}</ion-item>
-        <ion-item>{{student.last}}</ion-item>
-        <ion-item>{{student.sex}}</ion-item>
-        <ion-item>{{student.birthday}}</ion-item>
-        <ion-item>{{student.group}}</ion-item>
-        <ion-item>{{student.spec_id}}</ion-item>
-
-    </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label>
+                  <h2>{{ student.first }} {{ student.last }}</h2>
+                  <p>{{ student.sex }}</p>
+                </ion-label>
+                <ion-note slot="end">{{ student.years }}</ion-note>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label>
+                  <p><strong>Група:</strong> {{ student.group }}</p>
+                  <p><strong>Спеціальність:</strong> {{ spec.name }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      
     <ion-item>
         <ion-label position="stacked">Введіть нову спеціальність:</ion-label>
         <ion-input #InputSpec></ion-input>
@@ -36,8 +52,8 @@
             <ion-input #InputLast></ion-input>
             <ion-label position="stacked">Введіть стать:</ion-label>
             <ion-input #InputSex></ion-input>
-            <ion-label position="stacked">Введіть дату народження:</ion-label>
-            <ion-input type="date" #InputDate></ion-input>
+            <ion-label position="stacked">Введіть вік:</ion-label>
+            <ion-input #InputDate></ion-input>
             <ion-label position="stacked">Введіть номер групи:</ion-label>
             <ion-input #InputGroup></ion-input>
             <ion-button (click)="addStudent(InputFirst.value, InputLast.value, InputSex.value, InputDate.value, InputGroup.value)">Додати студента</ion-button>

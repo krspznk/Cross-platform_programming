@@ -25,4 +25,14 @@ export class StudentList {
             return student.spec_id === id_spec;
         });
     }
+
+    delete(id: number) {
+        const index = this.studentList.findIndex(student => student.id === id);
+        if (index !== -1) {
+            this.studentList.splice(index, 1);
+            this.search(this.configService.spec$.value.id);
+        }
+    }
+    
+    
 }
